@@ -2,10 +2,13 @@
 
   //assuming this is what goes here and then we just add 
 // var title = document.querySelector('.call-to-action');
-var randomPosterButton = document.querySelector('.show-random');   // thinking this might be right for the 0 iteration? 
-
-
-
+var randomPosterButton = document.querySelector('.poster-quote');   // thinking this might be right for the 0 iteration? 
+var randomPosterButton = document.querySelector('.poster-img');
+var randomPosterButton = document.querySelector('.poster-title');
+var randomPosterButton = document.querySelector('.show-random');
+var posterImg = document.querySelector('.poster-img');
+var posterTitle = document.querySelector('.poster-title');
+var posterQuote = document.querySelector('.poster-quote');
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -106,13 +109,12 @@ var quotes = [
 ];
 var savedPosters = [];
 var currentPoster;
-
+// var randomPosterButton = document.querySelector('.show-random');
 // event listeners go here 👇
 
 // again just following the lesson and inputting what might go here for iteration 0
-randomButton.addEventListener('click', showRandomPoster);
-window.addEventListener('load', showRandomPoster);
-
+randomButton.addEventListener('click', showRandomPoster());
+window.addEventListener('load', showRandomPoster());
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -128,18 +130,15 @@ function createPoster(imageURL, title, quote) {
     quote: quote}
 }
 
-
 // 👇 added some code that doesn't work quite yet chatted in study hall but got stuck here 👇
-function showRandomPoster () {
-  currentPoster = new poster(
+function showRandomPoster() {
   posterImg.src = images[getRandomIndex(images)];
-  posterImg.src = images[getRandomIndex(titles)];
-  posterImg.src = images[getRandomIndex(quotes)];
-  );
-  newPoster();
+  posterTitle.innerText = titles[getRandomIndex(titles)];
+  posterQuote.innerText = quotes[getRandomIndex(quotes)];
+  createPoster(posterImg.src, posterTitle.innerText, posterQuote.innerText)
 }
 
-
+// posterTitle.innerText = getRandomIndex(titles)
 
 👇
 //functions/buttons we might need to create://
