@@ -1,9 +1,20 @@
 // query selector variables go here 👇
+var posterImg = document.querySelector('.poster-img');
+var posterTitle = document.querySelector('.poster-title');
+var posterQuotes = document.querySelector('.poster-quote');
+var randomPosterButton = document.querySelector('.show-random');  
 
-  //assuming this is what goes here and then we just add 
-// var title = document.querySelector('.call-to-action');
-var randomPosterButton = document.querySelector('.show-random');   // thinking this might be right for the 0 iteration? 
-
+var makeYourOwnPosterButton = document.querySelector('.show-form');
+var posterForm = document.querySelector('.poster-form');
+var backToMainButton = document.querySelector('.back-to-main');
+var mainPoster = document.querySelector('.main-poster');
+var showSavedPostersButton = document.querySelector('.show-saved');
+var hiddenSavedPosters = document.querySelector('.saved-posters');
+var nevermindTakeMeBack = document.querySelector('.show-main');
+// var backToMain = document.querySelector('.show-hidden');
+var addImageUrl = document.querySelector('#poster-image-url');
+var addMotivationalTitle = document.querySelector('#poster-title');
+var addMotivationalQuote = document.querySelector('#poster-quote');
 
 
 // we've provided you with some data to work with 👇
@@ -104,15 +115,32 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
+
 var savedPosters = [];
 var currentPoster;
 
+function displayForm() {
+  mainPoster.hidden = true;
+// posterForm.classList.remove('hidden');
+}
+
 // event listeners go here 👇
 
-// again just following the lesson and inputting what might go here for iteration 0
-randomButton.addEventListener('click', showRandomPoster);
+randomPosterButton.addEventListener('click', showRandomPoster);
 window.addEventListener('load', showRandomPoster);
+makeYourOwnPosterButton.addEventListener('click', displayForm);
+showSavedPostersButton.addEventListener('click', showSavedPosters);
+backToMainButton.addEventListener('click', goToMain);
+nevermindTakeMeBack.addEventListener('click', goToMain);
+// var nevermindTakeMeBack = document.querySelector('.show-main');
+// backToMainButton.addEventListener('click', showBacktoMain);
+addImageUrl.addEventListener(, makePoster);
+addMotivationalTitle.addEventListener(, makePoster);
+addMotivationalQuote.addEventListener(, makePoster);
 
+// var addImageUrl = document.querySelector('#poster-image-url');
+// var addMotivationalTitle = document.querySelector('#poster-title');
+// var addMotivationalQuote = document.querySelector('#poster-quote');
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -128,19 +156,64 @@ function createPoster(imageURL, title, quote) {
     quote: quote}
 }
 
-
-// 👇 added some code that doesn't work quite yet chatted in study hall but got stuck here 👇
 function showRandomPoster () {
-  currentPoster = new poster(
-  posterImg.src = images[getRandomIndex(images)];
-  posterImg.src = images[getRandomIndex(titles)];
-  posterImg.src = images[getRandomIndex(quotes)];
-  );
-  newPoster();
+posterImg.src = images[getRandomIndex(images)];
+posterTitle.innerText = titles[getRandomIndex(titles)];
+posterQuotes.innerText = quotes[getRandomIndex(quotes)];
+createPoster(posterImg.src, posterTitle.innerText, posterQuotes.innerText) 
 }
 
+function displayUserInputPoster() {
+  var userInputPoster = createPoster(userInputImage.value, userInputTitle.value, userInputQuote.value)
+  singleImage.src = userInputPoster.imageURL
+  title.innerText = userInputPoster.title
+  quote.innerText = userInputPoster.quote
+  hide(posterForm)
+  show(mainImage)
+}
 
+function displayForm() {
+  console.log("displayForm")
+  mainPoster.hidden = true;
+  posterForm.classList.remove('hidden');
+}
 
+function showSavedPosters() {
+  // wholePage.classList.add('hidden')
+  mainPoster.hidden = true;
+  hiddenSavedPosters.classList.remove('hidden')
+}
+
+function goToMain() {
+  mainPoster.hidden = false;
+  posterForm.classList.add('hidden');
+  hiddenSavedPosters.classList.add('hidden');
+}
+
+// var addImageUrl = document.querySelector('#poster-image-url');
+// var addMotivationalTitle = document.querySelector('#poster-title');
+// var addMotivationalQuote = document.querySelector('#poster-quote');
+
+// function showBacktoMain() {
+//   mainPoster.hidden = false;
+//   posterForm.classList.add('hidden');
+//   savedPosterPage.classList.add('hidden');
+// }
+
+// function backToMain() {
+//   mainPoster.hidden = false;
+// posterForm.classList.add('hidden');
+// posterForm.classList.add('hidden');
+// }
+
+// function displaySavedPoster() {
+//   mainPoster.hidden = true;
+//   savedPosterPage.classList.remove('hidden');
+// }
+
+// var showSavedPostersButton = document.querySelector('.show-saved');
+// var hiddenSavedPosters = document.querySelector('.saved-posters');
+// showSavedPostersButton.addEventListener('click', showSavedPosters);
 
 //functions/buttons we might need to create://
   //1 show my poster
@@ -151,7 +224,4 @@ function showRandomPoster () {
   // 6 show another random poster
   // 7 make your own poster
   // 8 create poster
-  // 9 get random poster /randomizer   
   
-  //just went through the assignment and looked at the buttons on the example and in the rubric!//
-  //brainstorming!
