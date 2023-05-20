@@ -1,5 +1,15 @@
 // query selector variables go here 👇
 
+  //assuming this is what goes here and then we just add 
+// var title = document.querySelector('.call-to-action');
+// var randomPosterButton = document.querySelector('.poster-quote');   // thinking this might be right for the 0 iteration? 
+// var randomPosterButton = document.querySelector('.poster-img');
+// var randomPosterButton = document.querySelector('.poster-title');
+var randomPosterButton = document.querySelector('.show-random');
+var posterImg = document.querySelector('.poster-img');
+var posterTitle = document.querySelector('.poster-title');
+var posterQuote = document.querySelector('.poster-quote');
+
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -100,8 +110,12 @@ var quotes = [
 ];
 var savedPosters = [];
 var currentPoster;
-
+// var randomPosterButton = document.querySelector('.show-random');
 // event listeners go here 👇
+
+// again just following the lesson and inputting what might go here for iteration 0
+randomButton.addEventListener('click', showRandomPoster());
+window.addEventListener('load', showRandomPoster());
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -115,4 +129,52 @@ function createPoster(imageURL, title, quote) {
     imageURL: imageURL, 
     title: title, 
     quote: quote}
+}
+
+// 👇 added some code that doesn't work quite yet chatted in study hall but got stuck here 👇
+function showRandomPoster() {
+  posterImg.src = images[getRandomIndex(images)];
+  posterTitle.innerText = titles[getRandomIndex(titles)];
+  posterQuote.innerText = quotes[getRandomIndex(quotes)];
+  createPoster(posterImg.src, posterTitle.innerText, posterQuote.innerText)
+};
+console.log(showRandomPoster);
+// posterTitle.innerText = getRandomIndex(titles)
+
+👇
+//functions/buttons we might need to create://
+  //1 show my poster
+  // 2 nevermind take me back
+  // 3 back to main
+  // 4 save this poster
+  // 5 show saved posters 
+  // 6 show another random poster
+  // 7 make your own poster
+  // 8 create poster
+  // 9 get random poster /randomizer   
+  
+  //just went through the assignment and looked at the buttons on the example and in the rubric!//
+  //brainstorming!
+
+// When a user clicks the “Make Your Own Poster” button, we should see the form, 
+// and the main poster should be hidden
+// When a user clicks the “View Saved Posters” button, we should see the saved posters area, 
+// and the main poster should be hidden
+// When a user clicks the “Nevermind, take me back!” or “Back to Main” buttons, 
+// we should only see the main poster section
+// In summary: Be able to switch between the three views (main poster, form, 
+// and saved posters) on the correct button clicks
+// Hint: go check out the HTML and CSS files to see how the form and saved posters sections 
+// are being hidden in the first place
+
+function displayForm() {
+  posterForm.hidden = true;
+  posterForm.classList.remove('hidden');
+}
+
+function hideMain
+
+function displaySavedPosters() {
+  savedPosters.hidden = true;
+  savedPosters.classList.remove('hidden');
 }
