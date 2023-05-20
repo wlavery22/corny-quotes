@@ -12,6 +12,9 @@ var showSavedPostersButton = document.querySelector('.show-saved');
 var hiddenSavedPosters = document.querySelector('.saved-posters');
 var nevermindTakeMeBack = document.querySelector('.show-main');
 // var backToMain = document.querySelector('.show-hidden');
+var addImageUrl = document.querySelector('#poster-image-url');
+var addMotivationalTitle = document.querySelector('#poster-title');
+var addMotivationalQuote = document.querySelector('#poster-quote');
 
 
 // we've provided you with some data to work with 👇
@@ -131,6 +134,13 @@ backToMainButton.addEventListener('click', goToMain);
 nevermindTakeMeBack.addEventListener('click', goToMain);
 // var nevermindTakeMeBack = document.querySelector('.show-main');
 // backToMainButton.addEventListener('click', showBacktoMain);
+addImageUrl.addEventListener(, makePoster);
+addMotivationalTitle.addEventListener(, makePoster);
+addMotivationalQuote.addEventListener(, makePoster);
+
+// var addImageUrl = document.querySelector('#poster-image-url');
+// var addMotivationalTitle = document.querySelector('#poster-title');
+// var addMotivationalQuote = document.querySelector('#poster-quote');
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -153,6 +163,15 @@ posterQuotes.innerText = quotes[getRandomIndex(quotes)];
 createPoster(posterImg.src, posterTitle.innerText, posterQuotes.innerText) 
 }
 
+function displayUserInputPoster() {
+  var userInputPoster = createPoster(userInputImage.value, userInputTitle.value, userInputQuote.value)
+  singleImage.src = userInputPoster.imageURL
+  title.innerText = userInputPoster.title
+  quote.innerText = userInputPoster.quote
+  hide(posterForm)
+  show(mainImage)
+}
+
 function displayForm() {
   console.log("displayForm")
   mainPoster.hidden = true;
@@ -170,6 +189,10 @@ function goToMain() {
   posterForm.classList.add('hidden');
   hiddenSavedPosters.classList.add('hidden');
 }
+
+// var addImageUrl = document.querySelector('#poster-image-url');
+// var addMotivationalTitle = document.querySelector('#poster-title');
+// var addMotivationalQuote = document.querySelector('#poster-quote');
 
 // function showBacktoMain() {
 //   mainPoster.hidden = false;
