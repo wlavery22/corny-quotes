@@ -167,7 +167,7 @@ function displayUserInputPoster() {
   goToMain()
   // hide(posterForm)
   // show(mainPoster)
-  return userInputPoster
+  // return userInputPoster
 }
 
 function displayForm() {
@@ -184,6 +184,7 @@ function showSavedPosters() {
 
 function goToMain() {
   mainPoster.hidden = false;
+  // mainPoster.classList.remove('hidden');
   posterForm.classList.add('hidden');
   hiddenSavedPosters.classList.add('hidden');
 }
