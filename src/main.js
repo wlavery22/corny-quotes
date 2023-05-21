@@ -170,13 +170,7 @@ function displayForm() {
   posterForm.classList.remove('hidden');
 }
 
-// function displayForm() {
-//   mainPoster.hidden = true;
-// // posterForm.classList.remove('hidden');
-// }
-
 function showSavedPosters() {
-  // wholePage.classList.add('hidden')
   mainPoster.hidden = true;
   hiddenSavedPosters.classList.remove('hidden')
   for (var i = 0; i < savedPosters.length ; i++) {
@@ -209,10 +203,4 @@ function displayUserInputPoster() {
   currentPoster = createPoster(posterImg.src, posterTitle.innerText, posterQuotes.innerText)
   goToMain()
   saveSubmittedData()
-  }
-
-
-//create a current poster
-//set our current poster value
-//push our values for each piece of poster into arrays
-//refresh back to main page
+}
