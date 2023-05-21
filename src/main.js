@@ -187,7 +187,9 @@ function goToMain() {
 }
 
 function saveThisPoster() {
+ if (!savedPosters.includes(currentPoster)) {
   savedPosters.push(currentPoster)
+ }
 }
 
 function saveSubmittedData() {
