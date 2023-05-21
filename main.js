@@ -165,10 +165,35 @@ function displayUserInputPoster() {
   posterTitle.innerText = userInputPoster.title
   posterQuotes.innerText = userInputPoster.quote
   goToMain()
+  
   // hide(posterForm)
   // show(mainPoster)
   // return userInputPoster
 }
+
+function addInput() {
+  images.push(userInputImage.value)
+  title.push(userInputTitle.value)
+  quotes.push(userInputQuote.value)
+}
+var savedPosters = [];
+var currentPoster;
+
+comparePoster()
+for 
+if ID currentPoster === ID what we passed in return true
+// push into array
+savePosters()
+// push into saved posters array
+
+addPosterToArray()
+if (comparePoster(currentPoster) does not equal true)
+
+// tiny change
+// images, title, quotes
+// var userInputImage = document.querySelector('#poster-image-url');
+// var userInputQuote = document.querySelector('#poster-quote');
+// var userInputTitle = document.querySelector('#poster-title');
 
 function displayForm() {
   // console.log("displayForm")
