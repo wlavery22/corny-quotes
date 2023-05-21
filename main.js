@@ -189,7 +189,6 @@ savePosters()
 addPosterToArray()
 if (comparePoster(currentPoster) does not equal true)
 
-// tiny change
 // images, title, quotes
 // var userInputImage = document.querySelector('#poster-image-url');
 // var userInputQuote = document.querySelector('#poster-quote');
@@ -213,7 +212,6 @@ function goToMain() {
   posterForm.classList.add('hidden');
   hiddenSavedPosters.classList.add('hidden');
 }
-
 
 // var addImageUrl = document.querySelector('#poster-image-url');
 // var addMotivationalTitle = document.querySelector('#poster-title');
