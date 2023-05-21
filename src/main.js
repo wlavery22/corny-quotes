@@ -15,7 +15,7 @@ var addMotivationalTitle = document.querySelector('#poster-title');
 var addMotivationalQuote = document.querySelector('#poster-quote');
 var showMyPosterButton = document.querySelector('.make-poster')
 var savePosterButton = document.querySelector('.save-poster')
-
+var savedPostersGrid = document.querySelector('.saved-posters-grid')
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -175,10 +175,17 @@ function showSavedPosters() {
   hiddenSavedPosters.classList.remove('hidden')
   for (var i = 0; i < savedPosters.length ; i++) {
     var poster = `
-    
-    ` 
+      <article class="mini-poster">    
+       <img src="${savedPosters[i].imageURL}">
+        <h2>${savedPosters[i].title}</h2>
+        <h4>${savedPosters[i].quote}</h4>
+      </article> 
+    `     
+    savedPostersGrid.insertAdjacentHTML("afterbegin", poster)
   }
 }
+
+
 
 function goToMain() {
   mainPoster.hidden = false;
