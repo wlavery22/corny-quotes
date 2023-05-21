@@ -3,9 +3,6 @@ var posterImg = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuotes = document.querySelector('.poster-quote');
 var randomPosterButton = document.querySelector('.show-random');  
-
-// var backToMain = document.querySelector('.show-hidden');
-
 var makeYourOwnPosterButton = document.querySelector('.show-form');
 var posterForm = document.querySelector('.poster-form');
 var backToMainButton = document.querySelector('.back-to-main');
@@ -13,8 +10,10 @@ var mainPoster = document.querySelector('.main-poster');
 var showSavedPostersButton = document.querySelector('.show-saved');
 var hiddenSavedPosters = document.querySelector('.saved-posters');
 var nevermindTakeMeBack = document.querySelector('.show-main');
+var showMyPosterButton = document.querySelector('.make-poster')
+var savePosterButton = document.querySelector('.save-poster')
+var savedPostersGrid = document.querySelector('.saved-posters-grid')
 var showMyPosterButton = document.querySelector('.make-poster');
-
 var userInputImage = document.querySelector('#poster-image-url');
 var userInputQuote = document.querySelector('#poster-quote');
 var userInputTitle = document.querySelector('#poster-title');
@@ -129,12 +128,11 @@ makeYourOwnPosterButton.addEventListener('click', displayForm);
 showSavedPostersButton.addEventListener('click', showSavedPosters);
 backToMainButton.addEventListener('click', goToMain);
 nevermindTakeMeBack.addEventListener('click', goToMain);
-// showMyPosterButton.addEventListener('click', displayUserInputPoster);
-// ?
 showMyPosterButton.addEventListener('click', function (e) {
   e.preventDefault();
   displayUserInputPoster();
 });
+savePosterButton.addEventListener('click', saveThisPoster)
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -153,22 +151,18 @@ function createPoster(imageURL, title, quote) {
 }
 
 function showRandomPoster () {
-posterImg.src = images[getRandomIndex(images)];
-posterTitle.innerText = titles[getRandomIndex(titles)];
-posterQuotes.innerText = quotes[getRandomIndex(quotes)];
-createPoster(posterImg.src, posterTitle.innerText, posterQuotes.innerText) 
+  posterImg.src = images[getRandomIndex(images)];
+  posterTitle.innerText = titles[getRandomIndex(titles)];
+  posterQuotes.innerText = quotes[getRandomIndex(quotes)];
+  currentPoster = createPoster(posterImg.src, posterTitle.innerText, posterQuotes.innerText) 
 }
-// ?
+
 function displayUserInputPoster() {
   var userInputPoster = createPoster(userInputImage.value, userInputTitle.value, userInputQuote.value)
   posterImg.src = userInputPoster.imageURL
   posterTitle.innerText = userInputPoster.title
   posterQuotes.innerText = userInputPoster.quote
   goToMain()
-  
-  // hide(posterForm)
-  // show(mainPoster)
-  // return userInputPoster
 }
 
 function addInput() {
@@ -176,92 +170,50 @@ function addInput() {
   title.push(userInputTitle.value)
   quotes.push(userInputQuote.value)
 }
-var savedPosters = [];
-var currentPoster;
-
-comparePoster()
-for 
-if ID currentPoster === ID what we passed in return true
-// push into array
-savePosters()
-// push into saved posters array
-
-addPosterToArray()
-if (comparePoster(currentPoster) does not equal true)
-
-// images, title, quotes
-// var userInputImage = document.querySelector('#poster-image-url');
-// var userInputQuote = document.querySelector('#poster-quote');
-// var userInputTitle = document.querySelector('#poster-title');
 
 function displayForm() {
-  // console.log("displayForm")
   mainPoster.hidden = true;
   posterForm.classList.remove('hidden');
 }
 
 function showSavedPosters() {
-  // wholePage.classList.add('hidden')
   mainPoster.hidden = true;
   hiddenSavedPosters.classList.remove('hidden')
+  for (var i = 0; i < savedPosters.length ; i++) {
+    var poster = `
+      <article class="mini-poster">    
+       <img src="${savedPosters[i].imageURL}">
+        <h2>${savedPosters[i].title}</h2>
+        <h4>${savedPosters[i].quote}</h4>
+      </article> 
+    `     
+    savedPostersGrid.insertAdjacentHTML("afterbegin", poster)
+  }
 }
 
 function goToMain() {
   mainPoster.hidden = false;
-  // mainPoster.classList.remove('hidden');
   posterForm.classList.add('hidden');
   hiddenSavedPosters.classList.add('hidden');
 }
 
-// var addImageUrl = document.querySelector('#poster-image-url');
-// var addMotivationalTitle = document.querySelector('#poster-title');
-// var addMotivationalQuote = document.querySelector('#poster-quote');
+function saveThisPoster() {
+ if (!savedPosters.includes(currentPoster)) {
+  savedPosters.push(currentPoster)
+ }
+}
 
-// backToMainButton.addEventListener('click', showBacktoMain);
-// addImageUrl.addEventListener(, makePoster);
-// addMotivationalTitle.addEventListener(, makePoster);
-// addMotivationalQuote.addEventListener(, makePoster);
-// showSavedPostersButton.addEventListener('click', showSavedPosters);
+function saveSubmittedData() {
+  images.push(currentPoster.imageURL)
+  titles.push(currentPoster.title)
+  quotes.push(currentPoster.quote)
+} 
 
-// var nevermindTakeMeBack = document.querySelector('.show-main');
-// var addImageUrl = document.querySelector('#poster-image-url');
-// var addMotivationalTitle = document.querySelector('#poster-title');
-// var addMotivationalQuote = document.querySelector('#poster-quote');
-// var addImageUrl = document.querySelector('#poster-image-url');
-// var addMotivationalTitle = document.querySelector('#poster-title');
-// var addMotivationalQuote = document.querySelector('#poster-quote');
-// var showSavedPostersButton = document.querySelector('.show-saved');
-// var hiddenSavedPosters = document.querySelector('.saved-posters');
-
-// function displayForm() {
-//   mainPoster.hidden = true;
-// posterForm.classList.remove('hidden');
-// }
-
-// function showBacktoMain() {
-//   mainPoster.hidden = false;
-//   posterForm.classList.add('hidden');
-//   savedPosterPage.classList.add('hidden');
-// }
-
-// function backToMain() {
-//   mainPoster.hidden = false;
-// posterForm.classList.add('hidden');
-// posterForm.classList.add('hidden');
-// }
-
-// function displaySavedPoster() {
-//   mainPoster.hidden = true;
-//   savedPosterPage.classList.remove('hidden');
-// }
-
-//functions/buttons we might need to create://
-  //1 show my poster
-  // 2 nevermind take me back
-  // 3 back to main
-  // 4 save this poster
-  // 5 show saved posters 
-  // 6 show another random poster
-  // 7 make your own poster
-  // 8 create poster
-  
+function displayUserInputPoster() {
+  posterImg.src = userInputImage.value;
+  posterTitle.innerText = userInputTitle.value;
+  posterQuotes.innerText = userInputQuote.value;
+  currentPoster = createPoster(posterImg.src, posterTitle.innerText, posterQuotes.innerText)
+  goToMain()
+  saveSubmittedData()
+}
