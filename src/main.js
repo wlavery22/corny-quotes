@@ -10,12 +10,13 @@ var mainPoster = document.querySelector('.main-poster');
 var showSavedPostersButton = document.querySelector('.show-saved');
 var hiddenSavedPosters = document.querySelector('.saved-posters');
 var nevermindTakeMeBack = document.querySelector('.show-main');
-var addImageUrl = document.querySelector('#poster-image-url');
-var addMotivationalTitle = document.querySelector('#poster-title');
-var addMotivationalQuote = document.querySelector('#poster-quote');
 var showMyPosterButton = document.querySelector('.make-poster')
 var savePosterButton = document.querySelector('.save-poster')
 var savedPostersGrid = document.querySelector('.saved-posters-grid')
+var showMyPosterButton = document.querySelector('.make-poster');
+var userInputImage = document.querySelector('#poster-image-url');
+var userInputQuote = document.querySelector('#poster-quote');
+var userInputTitle = document.querySelector('#poster-title');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -119,7 +120,6 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
-
 // event listeners go here 👇
 
 randomPosterButton.addEventListener('click', showRandomPoster);
@@ -128,14 +128,15 @@ makeYourOwnPosterButton.addEventListener('click', displayForm);
 showSavedPostersButton.addEventListener('click', showSavedPosters);
 backToMainButton.addEventListener('click', goToMain);
 nevermindTakeMeBack.addEventListener('click', goToMain);
-showMyPosterButton.addEventListener('click', function (event){
-  event.preventDefault()
-  displayUserInputPoster()
-})
-savePosterButton.addEventListener('click', saveThisPoster )
+showMyPosterButton.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayUserInputPoster();
+});
+savePosterButton.addEventListener('click', saveThisPoster)
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
+
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
@@ -158,11 +159,16 @@ function showRandomPoster () {
 
 function displayUserInputPoster() {
   var userInputPoster = createPoster(userInputImage.value, userInputTitle.value, userInputQuote.value)
-  singleImage.src = userInputPoster.imageURL
-  title.innerText = userInputPoster.title
-  quote.innerText = userInputPoster.quote
-  hide(posterForm)
-  show(mainImage)
+  posterImg.src = userInputPoster.imageURL
+  posterTitle.innerText = userInputPoster.title
+  posterQuotes.innerText = userInputPoster.quote
+  goToMain()
+}
+
+function addInput() {
+  images.push(userInputImage.value)
+  title.push(userInputTitle.value)
+  quotes.push(userInputQuote.value)
 }
 
 function displayForm() {
@@ -185,8 +191,6 @@ function showSavedPosters() {
   }
 }
 
-
-
 function goToMain() {
   mainPoster.hidden = false;
   posterForm.classList.add('hidden');
@@ -206,9 +210,9 @@ function saveSubmittedData() {
 } 
 
 function displayUserInputPoster() {
-  posterImg.src = addImageUrl.value;
-  posterTitle.innerText = addMotivationalTitle.value;
-  posterQuotes.innerText = addMotivationalQuote.value;
+  posterImg.src = userInputImage.value;
+  posterTitle.innerText = userInputTitle.value;
+  posterQuotes.innerText = userInputQuote.value;
   currentPoster = createPoster(posterImg.src, posterTitle.innerText, posterQuotes.innerText)
   goToMain()
   saveSubmittedData()
